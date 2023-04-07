@@ -1,43 +1,25 @@
-// deault export
-
-// named export
-
-export default function add (a,b) {
-    return a+b;
-}
-
-export function sub (a,b) {
-    return a-b;
-}
-
-export function mul (a,b) {
-    return a*b;
-}
-
-export function div (a,b) {
-    return a/b;
-}
+// const indexFiles = require('./index.js');
+// const testAbc = require('./testabc.js');
 
 
-// exports.add = add;
-// exports.sub = sub;
-// exports.mul = mul;
-// exports.div = div;
+// const a = 55; 
+// console.log(indexFiles.a);
+// console.log(indexFiles.b);
+// console.log(indexFiles.c);
 
-// this will not work !
-// exports = {
-//     add: add,
-//     sub : sub,
-//     mul : mul,
-//     div: div,
-// }
+// console.log(testAbc.dog)
 
-// module.exports = {
-//     add: add,
-//     sub : sub,
-//     mul : mul,
-//     div: div,
-// }
+// default import
+// import potato from './index.js';
+// named import
+// import {cat, catMe, test } from './index.js';
+// same line import
+// import potato, {cat, catMe } from './index.js';
+// import * as all from './index.js';
 
+// console.log(all.cat);
+// all.catMe();
+// console.log(all.default);
+// console.log(all.test);
 
-
+import {http} from 'http';

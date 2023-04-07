@@ -1,140 +1,203 @@
-// const os = require('os');
-// console.log(" has changed");
+// var catMe = require('cat-me')
+// console.log("is this working")
+// console.dir(catMe);
+// catMe('grumpy')
+// commonJS module (import export)
+// var color = require('colors-cli')
+// console.log( color.green_bbt('hello') )
 
-// values of os.platform()
-// darwin (macOS)
-// freebsd (FreeBSD)
-// linux (Linux)
-// sunos (SunOS)
-// win32 (Windows)
-// if(os.platform() === 'win32'){
-//     console.log("Windows");
+// const a = 23;
+
+// exports.a = a;
+// exports.b = 42;
+// exports.c = 99;
+
+
+// const cat ={
+//     name: 'cat',
+//     age: 3,
 // }
 
-// os.cpus().forEach((cpu, index) => {
-//     console.log(`CPU ${index} : ${cpu.model}`);
-// })
-
-// console.log(os.arch()); //architecture
-
-// console.log(os.freemem()); //free memory
-
-// console.log(os.networkInterfaces()); //total memory
-
-// File System Module
-
-// fs.mkdir('test123')
-//   .then(() => {
-//     console.log('folder created')
-//   })
-//   .catch((err) => {
-//     console.log(err)
-// })
-
-// fs.watch('test123/test.txt').then((event, filename) => {
-//     console.log(event, filename)
-// })
-
-// fs.writeFile('test123/test.txt', 'Hello World')
-//   .then(() => {
-//     console.log('file created')
-//   })
-//   .catch((err) => {
-//     console.log(err)
-// })
-
-// fs.readFile('test123/test.txt', (err,data) => {
-//     console.log(data);
-// })
-
-// fs.appendFile('test123/test.txt', 'this will append ? ')
-
-// try {
-// const value = fs.readFileSync('test123/tesere.txt', 'utf8')
-// } catch (err) { 
-//     // console.log(err)
-//     console.log('code is running')
+// function catMe(){
+//     console.log('cat me')
 // }
 
-// console.log('end of code');
+// const dog={
+//     name: 'dog',
+//     age: 4,
+// }
 
-// const EventEmitter = require('events');
-
-// class ExamOverEventEmitter extends EventEmitter {}
-
-// const examOver = new ExamOverEventEmitter();
-
-// examOver.on('examOver', () => {
-//     console.log('exam is over says student 1');
-// })
-
-// examOver.on('examStarts', () => {
-//     console.log('exam is over says student 2');
-// })
-
-// examOver.emit('examOver');
-// examOver.emit('examOver');
+// const test = {
+//     name: 'test',
+// }
 
 
-// common JS 
-// const test = require('./test.js');
+// // default export
+// export default dog;
+// // normal export
+// export {cat, catMe };
+// export {test};
 
-// const test = (function (exports, require, module, __filename, __dirname) {
-//     // module.exports = exports = {};
-    
-//     function add (a,b) {
-//         return a+b;
-//     }   
+// import http from 'http';
 
-//     exports ={
-//         add: add,
+
+// api/v1/employees GET 
+// api/v1/managers  GET
+// api/v1/students  GET
+// api/v1/teachers  GET
+
+// const server = http.createServer((req, res) => {
+//     if(req.method === 'GET'){
+//         // if(req.url === '/'){
+      
+//         // res.write('hello world \n');
+//         // res.write('hi I am still there \n');
+//         // res.write('hi I am still there \n');
+//         // res.write('hi I am still there \n');
+//         // res.end();
+//         // } else if (req.url === '/about'){ 
+//         //     res.write('about page \n');
+//         //     res.end();
+//         // }
+//         if(req.url === '/api/v1/employees'){
+//             res.write('employees \n');
+//             res.end();
+//         } else if (req.url === '/api/v1/managers'){ 
+//             res.write('managers \n');
+//             res.end();
+//         } else if (req.url === '/api/v1/students'){
+//             res.write('students \n');
+//             res.end();
+//         } else if (req.url === '/api/v1/teachers'){
+//             res.write('teachers \n');
+//             res.end();
+//         }
+//     } else if (req.method === 'POST'){
+//        let body = '';
+//         req.on('data', (chunk) => {
+//              body += chunk;
+//         });
+//         console.log(body);
+//         req.on('end', () => {
+//             console.log(body);
+//             res.end('data resided');
+//         });
 //     }
-//     return module.exports;
-// })({}, require, {}, __filename, __dirname);
+// });
+
+// server.listen(4505, () => {
+//     console.log('listening on port 4505')
+// });
 
 
-// add                        (1,2)
-// const a = (function (a,b){return a+b})(1,2)
+
+// import http from 'http';
+
+// const server = http.createServer((req, res) => {
+//     if(req.method === 'GET'){
+//         if(req.url === '/'){
+//            res.end('hello world');
+//         }
+//     }
+// });
+
+// server.listen(4505,()=>{});
 
 
-// Immediately Invoked Function Expression (IIFE)
+// todo list
+// GET 
+// /todos
+ //  {
+ //    "todos": ['test' ,'test2',"teach at newton school"]
+ //  }
+
+// GET
+// /todos/3
+// {
+//     "todo": "teach at newton school"
+// }
+
+// POST
+// /todos
+// {
+    //     "todo": "teach at newton school"
+// }
+
+// DELETE
+// /todos/1
 
 
-// (function add(a,b) {
-//     return a+b;
-// })(1,2);
+import dotenv from 'dotenv';
+import express from "express";
+import cors  from 'cors';
 
-// add();
+// basically teaches node how to read .env file
+dotenv.config();
 
-// console.log(test.add(1,2));
+const app = express();
+
+// middleware
+
+// app.use(cors());
+
+app.use(express.json());
+
+app.use(express.urlencoded({extended: true}));
+
+const array = [];
+
+// post request
+app.post('/todos', (req, res) => { 
+    //  {todo: 'test'}
+    const {todo} = req.body;
+    if(!todo){
+        // node code 
+        // res.status = 400;
+        // res.end(JSON.stringify({message: 'todo is required'}));
+        // express code
+        return res.status(400).json({message: 'todo is required'});
+    }
+    array.push(todo);
+    res.json({todos: array});
+});
+
+app.get('/todos', (req, res) => {
+    res.json({todos: array});
+});
+
+app.get('/todos/:id', (req, res) => {
+    const {id} = req.params;
+    const todo = array[id-1];
+    if(!todo){
+        return res.status(404).json({message: 'todo not found'});
+    }
+    res.json({todo});
+});
+
+app.delete('/todos/:id', (req, res) => {
+    const {id} = req.params;
+    const todo = array[id-1];
+    if(!todo){
+        return res.status(404).json({message: 'todo not found'});
+    }
+    array.splice(id-1, 1);
+    res.json({todos: array});
+});
+
+app.put('/todos/:id', (req, res) => {  
+    const {id} = req.params;
+    const {todo} = req.body;
+    if(!todo){
+        return res.status(400).json({message: 'todo is required'});
+    }
+    const oldTodo = array[id-1];
+    if(!oldTodo){
+        return res.status(404).json({message: 'todo not found'});
+    }
+    array[id-1] = todo; 
+    res.json({todos: array});
+});
 
 
-// import potato from './test.js';
+app.listen(process.env.PORT||8080,()=>{});
 
-// console.log(potato(1,3));
-
-
-// name import
-// import {sub,div,mul} from './test.js';
-
-// console.log(sub(1,3));
-
-// name + default import
-
-// 1
-import os from 'os';
-import test, {sub,div,mul} from './test.js';
-// test abc = require('./test.js');
-// 2
-// import * as Test from './test.js';
-
-// Test.default(1,3);
-// Test.sub(1,3);
-// Test.div(1,3);
-// Test.mul(1,3);
-
-console.log("some random data")
-// 50,000 lines of code
-test(1,2);
-os.arch();
-os.cpus();

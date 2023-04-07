@@ -1,19 +1,21 @@
 {
-  "name": "test",
+  "name": "rahulmohan",
   "version": "1.0.0",
-  "description": "test dec",
+  "description": "I am so cool",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "nodemon index.js",
-    "test": "echo \"hi from scripts\""
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
+  "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
-  },
-  "devDependencies": {
+    "cat-me": "^1.0.3",
+    "colors-cli": "^1.0.29",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "nodemon": "^2.0.22"
   }
 }

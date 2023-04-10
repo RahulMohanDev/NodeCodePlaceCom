@@ -138,7 +138,7 @@ const app = express();
 
 // middleware
 
-// app.use(cors());
+app.use(cors());
 
 app.use(express.json());
 
@@ -199,5 +199,6 @@ app.put('/todos/:id', (req, res) => {
 });
 
 
+console.log(process.env.PORT);
 app.listen(process.env.PORT||8080,()=>{});
 

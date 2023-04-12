@@ -130,6 +130,7 @@
 import dotenv from 'dotenv';
 import express from "express";
 import cors  from 'cors';
+import todoRoutes from './routes/todo/todo.js';
 
 // basically teaches node how to read .env file
 dotenv.config();
@@ -142,60 +143,23 @@ app.use(cors());
 
 app.use(express.json());
 
+app.use((req,res,next)=>{
+   
+    const {middleware} = req.body;
+    if(middleware){
+        // res.send('middleware');
+    }
+    // res.send('no middleware');
+    next();
+})
+
 app.use(express.urlencoded({extended: true}));
 
-const array = [];
-
 // post request
-app.post('/todos', (req, res) => { 
-    //  {todo: 'test'}
-    const {todo} = req.body;
-    if(!todo){
-        // node code 
-        // res.status = 400;
-        // res.end(JSON.stringify({message: 'todo is required'}));
-        // express code
-        return res.status(400).json({message: 'todo is required'});
-    }
-    array.push(todo);
-    res.json({todos: array});
-});
+app.use('/todos', todoRoutes)
 
-app.get('/todos', (req, res) => {
-    res.json({todos: array});
-});
-
-app.get('/todos/:id', (req, res) => {
-    const {id} = req.params;
-    const todo = array[id-1];
-    if(!todo){
-        return res.status(404).json({message: 'todo not found'});
-    }
-    res.json({todo});
-});
-
-app.delete('/todos/:id', (req, res) => {
-    const {id} = req.params;
-    const todo = array[id-1];
-    if(!todo){
-        return res.status(404).json({message: 'todo not found'});
-    }
-    array.splice(id-1, 1);
-    res.json({todos: array});
-});
-
-app.put('/todos/:id', (req, res) => {  
-    const {id} = req.params;
-    const {todo} = req.body;
-    if(!todo){
-        return res.status(400).json({message: 'todo is required'});
-    }
-    const oldTodo = array[id-1];
-    if(!oldTodo){
-        return res.status(404).json({message: 'todo not found'});
-    }
-    array[id-1] = todo; 
-    res.json({todos: array});
+app.get('/', (req, res) => {
+    res.send("home page");
 });
 
 

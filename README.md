@@ -69,3 +69,37 @@ db.myCollection.find({ $and: [{ age: { $gte: 18 } }, { age: { $lte: 30 } }], gen
 ```
 
 This will return all documents where the **`age`** field is between 18 and 30 (inclusive) and the **`gender`** field is "male".
+
+
+## Element Operators:
+- **$exists**: Matches documents that have the specified field.
+- **$type** : Selects documents if a field is of the specified type.
+
+## Array Operators:
+- **`$all`**: Matches arrays that contain all elements specified in an array.
+- **`$elemMatch`**: Selects documents if an array field contains at least one element that matches all the specified criteria.
+- **`$size`**: Selects documents if an array field has the specified number of elements.
+## Evaluation Operators:
+- **`$expr`**: Allows use of aggregation expressions within the query language.
+- **`$jsonSchema`**: Validate documents against the given JSON Schema.
+- **`$mod`**: Performs a modulo operation on the value of a field.
+- **`$regex`**: Selects documents where values match a specified regular expression.
+- **`$text`**: Performs text search.
+- **`$where`**: Matches documents that satisfy a JavaScript expression.
+## Geospatial Operators:
+- **`$geoIntersects`**: Selects geometries that intersect with a GeoJSON geometry.
+- **`$geoWithin`**: Selects geometries within a bounding GeoJSON geometry.
+- **`$near`**: Returns geospatial objects in proximity to a point.
+- **`$nearSphere`**: Returns geospatial objects in proximity to a point on a sphere.
+## Array Update Operators:
+- **`$addToSet`**: Adds elements to an array only if they do not already exist in the set.
+- **`$pop`**: Removes the first or last element of an array.
+- **`$push`**: Adds elements to the end of an array.
+- **`$pull`**: Removes elements from an array that match a specified condition.
+- **`$pullAll`**: Removes all elements from an array that match a specified condition.
+## Field Update Operators:
+- **`$inc`**: Increments the value of a field by a specified amount.
+- **`$mul`**: Multiplies the value of a field by a specified amount.
+- **`$rename`**: Renames a field.
+- **`$set`**: Sets the value of a field.
+- **`$unset`**: Removes the specified field.
